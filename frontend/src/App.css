@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins";
+}
+
+/* Updated Darker Theme Color */
+:root {
+    --mainColor: #085bb0;  /* Old: #0a74da (Dark version) */
+    --hoverColor: #064a8f;
+}
+
+/* Header container */
+.header {
+    width: 100%;
+    height: 70px;
+    background: var(--mainColor);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo */
+.logo a {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Search Bar */
+.search-box {
+    display: flex;
+    width: 40%;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px 0 0 5px;
+}
+
+.search-box button {
+    background: var(--hoverColor);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    color: white;
+    font-size: 18px;
+}
+
+.search-box button:hover {
+    background: #043b74;
+}
+
+/* Right side icons */
+.icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.icon {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+
+.icon:hover {
+    color: #dcdcdc;
+}
+
+/* Footer Styling */
+.footer {
+    width: 100%;
+    background: var(--mainColor);
+    color: white;
+    padding: 25px 20px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+/* Footer text */
+.footer-content h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.footer-content p {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.footer-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #dcdcdc;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/* Home Welcome Message */
+/* Container styling */
+.home-welcome-container {
+    margin: 50px auto;
+    padding: 30px;
+    max-width: 600px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Heading styling */
+.welcome-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Paragraph styling */
+.welcome-message {
+    font-size: 1.1rem;
+    color: #555555;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+/* Add slight animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ID-specific styles (optional but added since you used IDs) */
+
+/* Home section container */
+#home-section {
+    border-top: 4px solid #3498db;
+}
+
+/* Emphasize heading ID */
+#welcome-heading {
+    letter-spacing: 1px;
+}
+
+/* Login/Register info paragraph */
+#login-register-info {
+    font-weight: 500;
+    color: #34495e;
+}
+
+/* Shopping info paragraph */
+#shopping-info {
+    font-weight: 600;
+    color: #2ecc71;
+}
+
+/* ------------------------------- */
+/*      PROFESSIONAL FORM LOOK     */
+/* ------------------------------- */
+
+form {
+    width: 820px;
+    padding: 30px;
+    margin: 30px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #dce3eb;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.12);
+}
+
+/* Form group */
+.form-group {
+    margin-bottom: 18px;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+/* Label */
+.form-group label {
+    font-size: 16px;
+    padding: 5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+/* Input Fields */
+.form-group input {
+    padding: 14px;
+    width: 90%;
+    border: 1px solid #bfc9d6;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+/* Input focus effect */
+.form-group input:focus {
+    border-color: var(--mainColor);
+    box-shadow: 0 0 6px rgba(8, 91, 176, 0.4);
+}
+
+/* Submit Button */
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background: var(--mainColor);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+button[type="submit"]:hover {
+    background: var(--hoverColor);
+}
+
+/* Center alignment */
+div {
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+.register-user ,.login-user{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #222;
+    margin-top: 10px;
+}
+.admin-login h2{
+        text-align: center;
+        margin-bottom: 20px;
+        color: #222;
+        margin-top: 10px;
+}
+
+.add-product h2{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #222;
+    margin-top: 10px;
+}
