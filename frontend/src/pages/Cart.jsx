@@ -210,7 +210,9 @@ const Cart = () => {
               {cartItems.map((item) => (
                 <div className="cart-item" key={item._id}>
                   <img
-                    src={`http://localhost:3000/${item.productId.image}`}
+                    src={`${import.meta.env.VITE_BASEURL}/${
+                      item.productId.image
+                    }`}
                     alt={item.productId.name}
                   />
 
