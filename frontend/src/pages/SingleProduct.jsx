@@ -63,7 +63,7 @@ const SingleProduct = () => {
       <div className="single-product">
         <div className="single-product-image">
           <img
-            src={`http://localhost:3000/${product.image}`}
+            src={`${import.meta.env.VITE_BASEURL}/${product.image}`}
             // src={product.image}
             alt={product.name}
           />

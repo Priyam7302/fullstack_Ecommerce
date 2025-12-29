@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import instance from "../../axiosConfig";
 
 function AddProduct() {
   const [data, setData] = useState({
@@ -45,8 +46,8 @@ function AddProduct() {
     });
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/product",
+      const response = await instance.post(
+        "/product",
         product,
         { withCredentials: true }
       );
@@ -70,7 +71,7 @@ function AddProduct() {
 
   async function checkSlug(slug){
     
-      const res = await axios.get("http://localhost:3000/product/checkSlug/" + slug,
+      const res = await instance.get("/product/checkSlug/" + slug,
       { withCredentials: true }
       );
       if (res.status === 400) {

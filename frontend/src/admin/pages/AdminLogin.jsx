@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import instance from "../../axiosConfig";
 
 function AdminLogin() {
   const navigate = useNavigate();
@@ -20,8 +21,8 @@ function AdminLogin() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/admin/login",
+      const response = await instance.post(
+        "/admin/login",
         data,
         { withCredentials: true }
       );
