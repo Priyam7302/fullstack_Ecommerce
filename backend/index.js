@@ -8,13 +8,14 @@ import adminRouter from "./routes/Admin.js";
 import checkRouter from "./routes/Check.js";
 import cartRouter from "./routes/Cart.js";
 import cookieParser from "cookie-parser";
+import "dotenv/config"
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin:process.env.FRONTEND_URL,
     credentials: true,
   })
 );
