@@ -7,7 +7,7 @@ function ProductCard({ product, slug }) {
       {/* <img src={product.image} alt={product.name} /> */}
       <Link to={`/product/${slug}`}>
         <img
-          src={`${import.meta.env.VITE_BASEURL}${product.image}`}
+          src={`${import.meta.env.VITE_BASEURL}/${product.image}`}
           alt={product.name}
         />
       </Link>
