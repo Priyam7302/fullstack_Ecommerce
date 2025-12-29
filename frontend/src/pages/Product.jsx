@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import instance from '../axiosConfig.js';
-console.log(instance);
 
 const Product = () => {
     const [products, setProducts] = useState([]);
@@ -18,7 +17,6 @@ const Product = () => {
         setProducts(response.data);
         setLoading(false);
     }
-console.log(products);
 
     return (
       <>
