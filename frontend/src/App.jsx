@@ -5,9 +5,12 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AuthProvider from "./contexts/AuthProvider";
-import AdminHome from "./admin/pages/AdminHome";
 import AddProduct from "./admin/pages/AddProduct";
 import ProtectedRouters from "./admin/components/ProtectedRouters";
+import SingleProduct from "./pages/SingleProduct";
+import Cart from "./pages/Cart";
+import { CartProvider } from "./contexts/CartProvider";
+// import CartProvider from "./contexts/CartProvider";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +38,18 @@ const router = createBrowserRouter([
         element: <AdminLogin />,
       },
       {
+        path: "/logout",
+        element: <Login />,
+      },
+      {
+        path: "/product/:slug",
+        element: <SingleProduct />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
         path: "/admin/product/add",
         element: (
           <ProtectedRouters>
@@ -49,9 +64,10 @@ const router = createBrowserRouter([
 function App() {
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </AuthProvider>
   );
 }
-
 export default App;

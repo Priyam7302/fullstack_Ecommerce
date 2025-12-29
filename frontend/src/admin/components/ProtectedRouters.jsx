@@ -1,7 +1,5 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { checkForlogin } from "../../../../backend/middlewares/middlewaresAuth";
 
 function ProtectedRouters({ children }) {
   useEffect(() => {
@@ -14,7 +12,7 @@ function ProtectedRouters({ children }) {
       { withCredentials: true }
     );
 
-    console.log(response);
+    // console.log(response);
   }
 
   return children;

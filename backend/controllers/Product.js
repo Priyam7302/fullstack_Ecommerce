@@ -5,7 +5,9 @@ import mongoose from "mongoose";
 export async function addProduct(req, res) {
   try {
     const newRecord = req.body;
-    newRecord.image=req.file.path;
+    if (req.file) {
+      newRecord.image = req.file.path.replace(/\\/g, "/");
+    }
     const newProduct = new Product(newRecord);
     await newProduct.save();
     return res.status(201).json(newProduct);
@@ -59,9 +61,23 @@ export async function deleteProduct(req, res) {
 }
 
 export async function getProducts(req, res) {
+  
   try {
     const products = await Product.find();
     return res.status(200).json(products);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
+export async function getSingleProduct(req, res) {
+  try {
+    const { slug } = req.params;
+    if (!slug) {
+      res.status(400).json({ message: "slug required" });
+      return;
+    }
+    const singleProduct = await Product.find({slug:slug});
+    return res.status(200).json(singleProduct);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

@@ -1,11 +1,12 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import "../App.css";
+import { useAuth } from "../contexts/AuthProvider";
+import { useState } from "react";
 
 function Login() {
+  const { checkIsLoggedIn } = useAuth();
   const navigate = useNavigate();
-
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -24,14 +25,23 @@ function Login() {
         "http://localhost:3000/user/login",
         data,
         {
-          withCredentials: true, 
+          withCredentials: true,
         }
       );
 
+      if (response.status == 200) {
+        checkIsLoggedIn();
+        const params1 = new URLSearchParams(window.location.search);
+        console.log(params1);
+        for (const [key, value] of params1.entries()) {
+          if (key === "nextPage") navigate(value);
+        }
+      }
       console.log("Login success:", response.data);
       alert("Login successful!");
+      // setIsLoggedIn(true);
 
-      navigate("/"); // go to home page
+      // navigate("/"); // go to home page
     } catch (error) {
       console.log("Login error:", error);
       alert("Invalid email or password");
@@ -68,7 +78,6 @@ function Login() {
         </div>
 
         <button type="submit">Login</button>
-      
       </form>
     </div>
   );

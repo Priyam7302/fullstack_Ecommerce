@@ -11,7 +11,7 @@ function AddProduct() {
     discountedPrice: "",
     image: null,
   });
-console.log(data);
+// console.log(data);
   function handleChange(e) {
     const { name, value, files } = e.target;
 
@@ -51,10 +51,10 @@ console.log(data);
         { withCredentials: true }
       );
 
-      console.log("Product Added:", response.data);
+      // console.log("Product Added:", response.data);
       alert("Product added successfully!");
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       alert("Something went wrong!");
     }
     setData({
@@ -67,26 +67,7 @@ console.log(data);
       image: null,
     });
   }
-  // async function checkSlug(slug) {
-  
 
-  //   try {
-  //     const res = await axios.get(`http://localhost:3000/product`);
-  //     console.log(res.data);
-  //     let data = res.data;
-  //     for (let i = 0; i < data.length; i++){
-  //       if (slug === data[i].slug) {
-  //         alert("slug already exists");
-  //         return;
-  //       }
-  //     }
-  //     if (res.data.exists) {
-  //       alert("Slug already exists!");
-  //     }
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
   async function checkSlug(slug){
     
       const res = await axios.get("http://localhost:3000/product/checkSlug/" + slug,

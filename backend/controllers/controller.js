@@ -1,9 +1,10 @@
 import data from '../data.js'
+
 export async function getData(req, res) { 
     res.status(200).json(data);
 }
 export async function addData(req,res) {
-    console.log(req.body);
+    // console.log(req.body);
     const newRecord = req.body;
     data.push(newRecord);
     res.status(201).json(data);
@@ -11,7 +12,7 @@ export async function addData(req,res) {
 export async function updateData(req,res) {
     const newRecord = req.body;
     const id = Number(req.params.id);
-    console.log(id);
+    // console.log(id);
     
     const updatedData = data.map((obj) =>
         obj.id === id ? newRecord : obj

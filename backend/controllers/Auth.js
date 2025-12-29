@@ -25,6 +25,7 @@ export async function registerUser(req, res) {
 
     const hashedPassword = await bcrypt.hash(data.password, 10);
     data.password = hashedPassword;
+    data.role = "user";
 
     const newUser = new Auth(data);
     await newUser.save();
@@ -61,6 +62,7 @@ export async function loginUser(req, res) {
     const doesPasswordMatch = await bcrypt.compare(
       data.password,
       user.password
+
     );
     if (user.role !== "user")
       return res.status(404).json({ message: "you are not a user" });

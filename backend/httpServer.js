@@ -30,7 +30,7 @@ const server = http.createServer((req, res) => {
         });
     } else if (req.method === "PUT") {
         const idToEdit = Number(req.url.split("/")[1]);
-        console.log(idToEdit);
+        // console.log(idToEdit);
         let body = "";
         req.on("data", (chunk) => {
             body += chunk;
@@ -42,7 +42,7 @@ const server = http.createServer((req, res) => {
         })
     } else if (req.method === 'DELETE') {
         const idToDelete = Number(req.url.split("/")[1]);
-        console.log(idToDelete);
+        // console.log(idToDelete);
         const updated = data.filter((obj) => obj.id != idToDelete)
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(updated));
