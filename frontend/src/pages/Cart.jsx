@@ -109,7 +109,7 @@ const Cart = () => {
 
                     <div className="cart-item-price">
                       <PiCurrencyInrLight />
-                      {item.productId.originalPrice}
+                      {item.productId.originalPrice * item.quantity}
                     </div>
 
                     <button
