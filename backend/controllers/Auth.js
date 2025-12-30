@@ -80,7 +80,7 @@ export async function loginUser(req, res) {
     );
    res.cookie("auth_token", auth_token, {
      httpOnly: true,
-     secure: false, 
+     secure: true, 
      sameSite: "None", 
      maxAge: 3600 * 1000, 
    });
