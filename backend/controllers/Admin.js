@@ -23,7 +23,7 @@ export async function loginAdmin(req, res) {
         res.cookie("admin_token", admin_token, {
             httpOnly: true,
             secure: true,
-            sameSite: "none",
+            sameSite: "None",
             maxAge: 3600, 
         });
         res.status(200).json({ message: "Admin logged in successfully", admin_token });
@@ -38,7 +38,7 @@ export async function logoutAdmin(req, res) {
         res.cookie("admin_token", admin_token, {
             httpOnly: true,
             secure: true,
-            sameSite: "none",
+            sameSite: "None",
             maxAge: -1,
         });
         res.status(200).json({ message: "Admin logged out successfully" });

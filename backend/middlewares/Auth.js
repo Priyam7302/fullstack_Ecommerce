@@ -10,7 +10,7 @@ export async function checkAuth(req, res, next) {
         .status(401)
         .json({ message: "You need to log in to perform this action" })
     
-    const decoded = jwt.verify(token, process.env.JWT_secret);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.userId = decoded.id;
     next();
   }

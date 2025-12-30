@@ -98,7 +98,7 @@ export async function logoutUser(req, res) {
     res.cookie("auth_token", "", {
       httpOnly: true,
       secure: true,
-      sameSite: "none",
+      sameSite: "None",
       maxAge: -1,
     });
     return res.status(200).json({ message: "User logged out successfully" });
