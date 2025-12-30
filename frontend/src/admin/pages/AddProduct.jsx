@@ -1,6 +1,5 @@
-import axios from "axios";
 import React, { useState } from "react";
-import instance from "../../axiosConfig";
+import instance from "../../axiosConfig.js";
 
 function AddProduct() {
   const [data, setData] = useState({

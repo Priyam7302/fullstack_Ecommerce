@@ -1,16 +1,16 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import First from "./pages/First";
-import AdminLogin from "./admin/pages/AdminLogin";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import AuthProvider from "./contexts/AuthProvider";
-import AddProduct from "./admin/pages/AddProduct";
-import ProtectedRouters from "./admin/components/ProtectedRouters";
-import SingleProduct from "./pages/SingleProduct";
-import Cart from "./pages/Cart";
-import { CartProvider } from "./contexts/CartProvider";
-// import CartProvider from "./contexts/CartProvider";
+import First from "./pages/First.jsx";
+import AdminLogin from "./admin/pages/AdminLogin.jsx";
+import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import AuthProvider from "./contexts/AuthProvider.jsx";
+import AddProduct from "./admin/pages/AddProduct.jsx";
+import ProtectedRouters from "./admin/components/ProtectedRouters.jsx";
+import SingleProduct from "./pages/SingleProduct.jsx";
+import Cart from "./pages/Cart.jsx";
+import { CartProvider } from "./contexts/CartProvider.jsx";
+
 
 const router = createBrowserRouter([
   {

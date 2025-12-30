@@ -457,8 +457,9 @@ div {
 /* Layout */
 .cart-layout {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2.2fr 1fr;
     gap: 3rem;
+    align-items: flex-start;
 }
 
 /* Items */
@@ -468,8 +469,10 @@ div {
     gap: 2rem;
 }
 
+/* Cart Item */
 .cart-item {
     display: flex;
+    align-items: center;
     gap: 1.5rem;
     padding: 1.5rem;
     background: #fff;
@@ -483,13 +486,14 @@ div {
     object-fit: contain;
 }
 
+/* Info */
 .cart-item-info {
     flex: 1;
 }
 
 .cart-item-info h2 {
     font-size: 1.05rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 /* Quantity */
@@ -506,6 +510,7 @@ div {
     background: #fff;
     cursor: pointer;
     font-size: 1.2rem;
+    border-radius: 6px;
 }
 
 .qty-btn:hover {
@@ -522,15 +527,33 @@ div {
     align-items: center;
     font-weight: 500;
     gap: 0.25rem;
+    white-space: nowrap;
 }
 
-/* Summary */
+/* Delete */
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #d11a2a;
+    padding: 6px;
+}
+
+.delete-btn:hover {
+    color: #ff0000;
+    transform: scale(1.1);
+}
+
+/* Summary (FIXED RIGHT using sticky) */
 .cart-summary {
     background: #fff;
     padding: 2rem;
     border-radius: 12px;
-    height: fit-content;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    position: sticky;
+    top: 100px;
+    /* distance from top */
 }
 
 .cart-summary h2 {
@@ -560,6 +583,7 @@ div {
     color: #fff;
     border: none;
     cursor: pointer;
+    border-radius: 8px;
 }
 
 .checkout-btn:hover {
@@ -571,9 +595,36 @@ div {
     padding: 2rem;
 }
 
-/* Responsive */
+/* =========================
+   📱 RESPONSIVE (Mobile)
+========================= */
 @media (max-width: 900px) {
     .cart-layout {
         grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* Summary goes bottom */
+    .cart-summary {
+        position: static;
+        margin-top: 2rem;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item img {
+        width: 100%;
+        height: 160px;
+    }
+
+    .cart-item-price {
+        margin-top: 0.5rem;
+    }
+
+    .delete-btn {
+        align-self: flex-end;
     }
 }

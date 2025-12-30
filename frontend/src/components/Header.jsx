@@ -1,10 +1,8 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaShoppingCart, FaUser, FaSearch } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
-import "../App.css";
-import instance from "../axiosConfig";
-import { useCart } from "../contexts/CartProvider";
+import instance from "../axiosConfig.js";
+import { useCart } from "../contexts/CartProvider.jsx";
 
 
 function Header() {

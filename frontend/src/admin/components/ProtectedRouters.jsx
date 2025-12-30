@@ -1,6 +1,5 @@
-import axios from "axios";
 import React, { useEffect } from "react";
-import instance from "../../axiosConfig";
+import instance from "../../axiosConfig.js";
 
 function ProtectedRouters({ children }) {
   useEffect(() => {

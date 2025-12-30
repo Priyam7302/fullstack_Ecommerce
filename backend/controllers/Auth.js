@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import Auth from "../models/Auth.js";
 import bcrypt from "bcrypt";
 import "dotenv/config.js";
