@@ -1,7 +1,83 @@
 
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import instance from "../../axiosConfig.js";
+
+// function AdminLogin() {
+//   const navigate = useNavigate();
+
+//   const [data, setData] = useState({
+//     email: "",
+//     password: "",
+//   });
+
+//   function handleChange(e) {
+//     const { name, value } = e.target;
+//     setData({ ...data, [name]: value });
+//   }
+
+//   async function handleSubmit(e) {
+//     e.preventDefault();
+
+//     try {
+//       const response = await instance.post(
+//         "/admin/login",
+//         data,
+//         { withCredentials: true }
+//       );
+
+//       console.log("Login success", response.data);
+//       alert("login in successfully in Admin");
+
+//       navigate("/admin/home");
+//     } catch (error) {
+//       console.log("login error", error),
+//         alert("Invelid email or password Admin");
+//     }
+//   }
+
+//   return (
+//     <div className="admin-login">
+//       <h2>Login To your Admin Account</h2>
+//       <form action="" onSubmit={handleSubmit}>
+//         <div className="form-group">
+//           <label htmlFor="email">email</label>
+//           <input
+//             type="text"
+//             placeholder="Enter Your Email"
+//             name="email"
+//             value={data.email}
+//             onChange={handleChange}
+//             required
+//           />
+//         </div>
+
+//         <div className="form-group">
+//           <label htmlFor="password">password</label>
+//           <input
+//             type="password"
+//             placeholder="Enter Your Password"
+//             name="password"
+//             value={data.password}
+//             onChange={handleChange}
+//             required
+//           />
+//         </div>
+
+//         <button type="submit">login</button>
+//         {/* <Link to="/register" className="register">
+//           Register
+//         </Link> */}
+//       </form>
+//     </div>
+//   );
+// }
+
+// export default AdminLogin;
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import instance from "../../axiosConfig.js";
+import { toast } from "react-toastify";
 
 function AdminLogin() {
   const navigate = useNavigate();
@@ -20,30 +96,31 @@ function AdminLogin() {
     e.preventDefault();
 
     try {
-      const response = await instance.post(
-        "/admin/login",
-        data,
-        { withCredentials: true }
-      );
+      const response = await instance.post("/admin/login", data, {
+        withCredentials: true,
+      });
 
-      console.log("Login success", response.data);
-      alert("login in successfully in Admin");
+      toast.success("Admin login successful");
 
-      navigate("/admin/product/add");
+      navigate("/admin/home");
     } catch (error) {
-      console.log("login error", error),
-        alert("Invelid email or password Admin");
+      console.error("Admin login error", error);
+      toast.error(
+        error.response?.data?.message || "Invalid admin email or password"
+      );
     }
   }
 
   return (
     <div className="admin-login">
       <h2>Login To your Admin Account</h2>
-      <form action="" onSubmit={handleSubmit}>
+
+      <form onSubmit={handleSubmit}>
+        {/* EMAIL */}
         <div className="form-group">
-          <label htmlFor="email">email</label>
+          <label>Email</label>
           <input
-            type="text"
+            type="email"
             placeholder="Enter Your Email"
             name="email"
             value={data.email}
@@ -52,8 +129,9 @@ function AdminLogin() {
           />
         </div>
 
+        {/* PASSWORD */}
         <div className="form-group">
-          <label htmlFor="password">password</label>
+          <label>Password</label>
           <input
             type="password"
             placeholder="Enter Your Password"
@@ -64,10 +142,7 @@ function AdminLogin() {
           />
         </div>
 
-        <button type="submit">login</button>
-        {/* <Link to="/register" className="register">
-          Register
-        </Link> */}
+        <button type="submit">Login</button>
       </form>
     </div>
   );

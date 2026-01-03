@@ -1,17 +1,16 @@
-import React from 'react'
-import { Outlet } from "react-router-dom"
-import Header from "../components/Header"
-import Footer from "../components/Footer"
-
+import React from "react";
+import { Outlet } from "react-router-dom";
+import HeaderSwitcher from "../components/HeaderSwitcher";
+import Footer from "../components/Footer";
 
 function First() {
   return (
     <div>
-      <Header />
+      <HeaderSwitcher />
       <Outlet />
       <Footer />
     </div>
-  )
+  );
 }
 
-export default First
+export default First;

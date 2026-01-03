@@ -1,27 +1,75 @@
+// import { createContext, useContext, useEffect, useState } from "react";
+// import instance from "../axiosConfig.js";
+
+// const authContext = createContext();
+
+// function AuthProvider({ children }) {
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+//   const [loggedinUser, setLoggedinUser] = useState(null);
+
+//   useEffect(() => {
+//     checkIsLoggedIn();
+//   }, []);
+
+//   async function checkIsLoggedIn() {
+//     const response = await instance.get("/check/login?referer=user", {
+//       withCredentials: true,
+//     });
+//     console.log(response);
+//     if (response.status === 200) setIsLoggedIn(true);
+//   }
+
+//   return (
+//     <authContext.Provider
+//       value={{ isLoggedIn, loggedinUser, checkIsLoggedIn, setIsLoggedIn }}
+//     >
+//       {children}
+//     </authContext.Provider>
+//   );
+// }
+
+// export function useAuth() {
+//   return useContext(authContext);
+// }
+
+// export default AuthProvider;
+
 import { createContext, useContext, useEffect, useState } from "react";
 import instance from "../axiosConfig.js";
 
 const authContext = createContext();
 
 function AuthProvider({ children }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loggedinUser, setLoggedinUser] = useState(null);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   useEffect(() => {
-    checkIsLoggedIn();
+    checkUserLogin();
   }, []);
 
-  async function checkIsLoggedIn() {
-    const response = await instance.get("/check/login?referer=user", {
-      withCredentials: true,
-    });
-    console.log(response);
-    if (response.status === 200) setIsLoggedIn(true);
+  async function checkUserLogin() {
+    try {
+      const res = await instance.get("/check/login?referer=user", {
+        withCredentials: true,
+      });
+
+      if (res.status === 200) setIsUserLoggedIn(true);
+    } catch {
+      setIsUserLoggedIn(false);
+    }
+  }
+
+  function logoutUserState() {
+    setIsUserLoggedIn(false);
   }
 
   return (
     <authContext.Provider
-      value={{ isLoggedIn, loggedinUser, checkIsLoggedIn, setIsLoggedIn }}
+      value={{
+        isUserLoggedIn,
+        setIsUserLoggedIn,
+        checkUserLogin,
+        logoutUserState,
+      }}
     >
       {children}
     </authContext.Provider>

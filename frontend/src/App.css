@@ -402,27 +402,38 @@ div {
 }
 
 .add-to-cart {
-    padding: 12px 25px;
-    background: black;
+    background-color: #0a74da;
     color: white;
+    padding: 12px 20px;
+    font-size: 16px;
     border: none;
+    border-radius: 6px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-
-.success {
-    background: #e7f9f0;
-    width:500px ;
-    color: #1a7f37;
-    border: 1px solid #1a7f37;
+.add-to-cart:hover {
+    background-color: #085bb0;
 }
 
-/* ERROR MESSAGE */
-.error {
-    background: #fdecea;
-    color: #b42318;
-    border: 1px solid #b42318;
+.add-to-cart.added {
+    background-color: #2ecc71;
+    cursor: not-allowed;
 }
+
+.cart-msg {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.cart-msg.success {
+    color: #2ecc71;
+}
+
+.cart-msg.error {
+    color: #e74c3c;
+}
+
 
 /* Page */
 .cart-page {
@@ -627,4 +638,197 @@ div {
     .delete-btn {
         align-self: flex-end;
     }
+}
+
+/* =========================
+   APPLY COUPON SECTION
+========================= */
+
+.coupon-box {
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+/* Header style like screenshot */
+.coupon-box::before {
+    content: "🏷️  Apply Coupon";
+    display: block;
+    font-weight: 600;
+    font-size: 15px;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+/* Input + button row */
+.coupon-box input {
+    width: 65%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.coupon-box input:focus {
+    border-color: #2563eb;
+}
+
+/* Apply button */
+.coupon-box button {
+    width: 30%;
+    margin-left: 10px;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #0f766e;
+    background-color: #ffffff;
+    color: #0f766e;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.coupon-box button:hover {
+    background-color: #0f766e;
+    color: #ffffff;
+}
+
+/* Error message */
+.coupon-box .error {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #dc2626;
+}
+
+/* Discount rows */
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 10px;
+}
+
+/* =========================
+   ADMIN PAGE LAYOUT
+========================= */
+.admin-page {
+    margin: 60px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.admin-page h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #222;
+    font-weight: 600;
+}
+
+/* =========================
+   ADMIN FORM
+========================= */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.admin-form input {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-form input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+}
+
+/* =========================
+   SUBMIT BUTTON
+========================= */
+.admin-form button {
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: #4f46e5;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.admin-form button:hover {
+    background-color: #4338ca;
+}
+
+.admin-form button:active {
+    transform: scale(0.98);
+}
+
+/* =========================
+   MESSAGE TEXT
+========================= */
+.admin-page p {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #e11d48;
+}
+
+/* =========================
+   LOADING TEXT
+========================= */
+.loading-text {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 16px;
+    color: #555;
+}
+
+.error-text {
+    color: #dc2626;
+    font-size: 12px;
+}
+
+.password-rules {
+    margin-top: 8px;
+    padding-left: 18px;
+    font-size: 13px;
+}
+
+.password-rules li {
+    list-style: disc;
+}
+
+.password-rules .valid {
+    color: #16a34a;
+}
+
+.password-rules .invalid {
+    color: #dc2626;
+}
+
+button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
 }

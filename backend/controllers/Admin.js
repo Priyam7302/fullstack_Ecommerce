@@ -21,10 +21,10 @@ export async function loginAdmin(req, res) {
             { expiresIn: "1h" }
             );
         res.cookie("admin_token", admin_token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: "None",
-            maxAge: 3600, 
+          httpOnly: true,
+          secure: process.env.SECURE === "true",
+          sameSite: process.env.SAMESITE,
+          maxAge: 3600,
         });
         res.status(200).json({ message: "Admin logged in successfully", admin_token });
       
@@ -36,10 +36,10 @@ export async function loginAdmin(req, res) {
 export async function logoutAdmin(req, res) {
     try {
         res.cookie("admin_token", admin_token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: "None",
-            maxAge: -1,
+          httpOnly: true,
+          secure: process.env.SECURE === "true",
+          sameSite: process.env.SAMESITE,
+          maxAge: -1,
         });
         res.status(200).json({ message: "Admin logged out successfully" });
     } catch (error) {

@@ -28,6 +28,7 @@ productRouter.get("/:slug", getSingleProduct);
 productRouter.post("/", upload.single("image"), addProduct);
 productRouter.put("/:id", updateProduct);
 productRouter.delete("/:id", deleteProduct);
-productRouter.get("/checkSlug/:slug",checkSlug);
+productRouter.get("/checkSlug/:slug", checkSlug);
+
 
 export default productRouter;
