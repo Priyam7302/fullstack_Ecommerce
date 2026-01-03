@@ -1,32 +1,96 @@
-# TODO: Consolidate Admin CSS
+E-COMMERCE PROJECT REQUIREMENTS & CORRECTIONS
 
-## Steps to Complete
+1. AUTHENTICATION & AUTHORIZATION
 
-- [ ] Update admin.css to include all admin styles from App.css, merging where necessary
-- [ ] Remove admin-related CSS from App.css
-- [ ] Add import for admin.css in AddCoupon.jsx
-- [ ] Test admin pages to ensure styles are applied correctly
+* Ecommerce user routes must not be accessible by admin.
+* Admin routes must not be accessible by users.
+* If a user logs in and tries to access the admin panel, an error message should be shown at the top (toast), not an alert.
+* Role-based route protection must be implemented.
 
-## Information Gathered
+2. LOGIN FLOW
 
-- App.css contains admin-related styles like .admin-login h2, .admin-page, .admin-form (with input, button, focus, hover, active states), and .admin-page p.
-- admin.css already has some admin styles, including .admin-page, .admin-form, etc., but some styles differ or are missing.
-- AddCoupon.jsx uses .admin-page and .admin-form classes.
-- AdminHome.jsx imports admin.css, but AddCoupon.jsx does not explicitly import it.
+* User login button should be available in the user header.
+* Admin login must be accessible only via the route `/admin/login`.
+* Admin should not see the user login button.
+* If the user/admin is logged in, the logout button should be visible.
+* If the user/admin is logged out, only the login button should be visible.
+* Login and logout buttons must never appear at the same time.
 
-## Plan
+3. HEADER MANAGEMENT
 
-- Move all admin-related CSS from App.css to admin.css, merging and updating where necessary to avoid duplicates and ensure consistency.
-- Remove the admin-related CSS from App.css.
-- Add import for admin.css in AddCoupon.jsx to ensure styles are applied.
-- Verify that admin.css has complete styles for all admin components.
+* User header and admin header must be completely different components.
+* Header should render based on role (user or admin).
+* A conditional toggle/logic must determine which header to display.
+* Header values and menu items must differ for user and admin.
 
-## Dependent Files to be edited
+4. CART MANAGEMENT
 
-- frontend/src/App.css (remove admin styles)
-- frontend/src/admin/admin.css (add/update admin styles)
-- frontend/src/admin/pages/AddCoupon.jsx (add import for admin.css)
+* Cart provider must be implemented using React Context API.
+* Cart item count in the header must persist after page reload.
+* If the user is logged out, the cart should be empty.
+* If the user is logged in, cart data should be fetched from the backend.
+* On logout, cart state must be cleared.
+* On login again, the previously added cart items for that user must reappear.
+* If a logged-in user clicks the Add to Cart button, redirect to the Cart page.
+* If a non-logged-in user clicks Add to Cart, redirect to the Login page.
 
-## Followup steps
+5. FORM VALIDATIONS
 
-- Test admin pages (AdminHome, AddCoupon, etc.) to ensure styles are applied correctly.
+* Phone number validation:
+
+  * After the country code, the phone number must not exceed 10 digits.
+* Registration validations:
+
+  * Email must be a valid Gmail format.
+  * Password must include:
+
+    * At least one capital letter
+    * At least one special character
+    * At least one number
+    * Minimum required length
+
+6. UI FEEDBACK & USER EXPERIENCE
+
+* Replace all alert messages with toast notifications.
+* Toasts should be used for success, error, and warning messages.
+* A loader must be displayed on every page until data is successfully fetched.
+* Loader should be implemented using custom CSS to improve UI.
+* Infinite scrolling must be implemented on product listing pages.
+* Products should load continuously on scroll so the page never appears empty.
+
+7. PRODUCT MANAGEMENT (ADMIN)
+
+* Original price and discount price fields:
+
+  * Must be number inputs
+  * Increment/decrement arrows must be disabled
+* Product image functionality:
+
+  * Multiple images must be supported per product.
+  * Image preview should be shown before submitting.
+  * Users should be able to add multiple images.
+  * Each image should have a remove (cross) button to delete a specific image.
+
+8. COUPON MANAGEMENT (ADMIN)
+
+* Coupon end date must always be greater than the start date.
+* Admin should be able to:
+
+  * Add coupons
+  * Edit coupons
+  * Delete coupons
+
+9. ADMIN DASHBOARD
+
+* Admin dashboard must display a list of all users.
+* Users must be separated into two lists:
+
+  * Admin users
+  * Normal users
+* Admin dashboard must display a list of all products.
+* Product list must include filters for:
+
+  * Alphabetical sorting (A–Z and Z–A)
+  * Price sorting (Low to High, High to Low)
+
+
