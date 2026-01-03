@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import instance from "../../axiosConfig";
+import Loader from "../../components/Loader";
+
 
 const EditCoupon = () => {
   const { id } = useParams();
@@ -16,9 +18,6 @@ const EditCoupon = () => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
 
-  /* ======================
-     FETCH COUPON BY ID
-  ====================== */
   const fetchCoupon = async () => {
     try {
       const res = await instance.get("/coupon/all");
@@ -46,16 +45,11 @@ const EditCoupon = () => {
     fetchCoupon();
   }, []);
 
-  /* ======================
-     HANDLE CHANGE
-  ====================== */
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  /* ======================
-     UPDATE COUPON
-  ====================== */
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -67,7 +61,7 @@ const EditCoupon = () => {
     }
   };
 
-  if (loading) return <p>Loading coupon...</p>;
+if (loading) return <Loader />;
 
   return (
     <div className="admin-page">

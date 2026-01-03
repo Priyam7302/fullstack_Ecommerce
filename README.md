@@ -293,6 +293,14 @@ FRONTEND_URL=http://localhost:5173
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/dbname
 JWT_SECRET=your_secret_key_here
 PORT=3000
+
+# Cookie settings (for local development - HTTP)
+SECURE=false
+SAMESITE=lax
+
+# For production (HTTPS), use:
+# SECURE=true
+# SAMESITE=lax
 ```
 
 ### Frontend (.env - optional)

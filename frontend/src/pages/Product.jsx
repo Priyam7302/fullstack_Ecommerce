@@ -1,34 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import ProductCard from '../components/ProductCard';
-import instance from '../axiosConfig.js';
+import  { useEffect, useState } from "react";
+import ProductCard from "../components/ProductCard";
+import instance from "../axiosConfig";
+import Loader from "../components/Loader";
+
 
 const Product = () => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        getProducts();
-    }, []);
+  useEffect(() => {
+    fetchProducts();
+    window.addEventListener("scroll", handleScroll);
 
-    async function getProducts() {
-        setLoading(true);
-        const response = await instance.get("/product");
-        console.log(response.data);
-        setProducts(response.data);
-        setLoading(false);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  async function fetchProducts() {
+    setLoading(true);
+    const res = await instance.get("/product");
+    setProducts(res.data);
+    setLoading(false);
+  }
+
+  function handleScroll() {
+    const scrollTop = document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const fullHeight = document.documentElement.scrollHeight;
+
+    if (scrollTop + windowHeight >= fullHeight - 5) {
+      duplicateProducts();
     }
+  }
 
-    return (
-      <>
-        {loading && <p className="loading">Loading...</p>}
-        <div className="products-container">
-          {products.map((product) => (
-            <ProductCard key={product._id} product={product} slug={product.slug} />
-          ))}
-        </div>
-      </>
-    );
+  function duplicateProducts() {
+    setProducts((prev) => [...prev, ...prev]);
+  }
 
-}
+  return (
+    <>
+      <div className="products-container">
+        {products.map((product, index) => (
+          <ProductCard key={index} product={product} slug={product.slug} />
+        ))}
+      </div>
+      {loading && <Loader size="small" />}
+    </>
+  );
+
+};
 
 export default Product;

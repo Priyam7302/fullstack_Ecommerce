@@ -9,7 +9,6 @@ export const CartProvider = ({ children }) => {
   const { isUserLoggedIn } = useAuth();
 
   useEffect(() => {
-    // 👉 fetch cart only if user is logged in
     async function fetchCart() {
       try {
         const res = await instance.get("/cart/", {

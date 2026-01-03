@@ -22,23 +22,12 @@ function Register() {
     setData({ ...data, [name]: value });
   }
 
-  /* ======================
-     NAME VALIDATION
-     Only letters & spaces
-  ====================== */
   const nameRegex = /^[A-Za-z\s]+$/;
   const isNameValid = nameRegex.test(data.name);
 
-  /* ======================
-     USERNAME VALIDATION
-     Must not start with number
-  ====================== */
   const usernameRegex = /^[A-Za-z][A-Za-z0-9]*$/;
   const isUsernameValid = usernameRegex.test(data.username);
 
-  /* ======================
-     PHONE VALIDATION (INDIA)
-  ====================== */
   const phoneDigits = data.phone.replace(/\D/g, "");
   const countryCode = "91";
 
@@ -49,9 +38,6 @@ function Register() {
 
   const isPhoneValid = localPhone.length === 10;
 
-  /* ======================
-     GMAIL VALIDATION (STRICT)
-  ====================== */
   const email = data.email.trim();
 
   const hasUppercaseEmail = /[A-Z]/.test(email);
@@ -76,9 +62,6 @@ function Register() {
     noDoubleDot &&
     minLength;
 
-  /* ======================
-     PASSWORD VALIDATION
-  ====================== */
   const hasUppercase = /[A-Z]/.test(data.password);
   const hasNumber = /\d/.test(data.password);
   const hasSpecial = /[@$!%*?&]/.test(data.password);
@@ -86,10 +69,7 @@ function Register() {
 
   const isPasswordValid =
     hasUppercase && hasNumber && hasSpecial && hasMinLength;
-
-  /* ======================
-     FORM VALIDITY CHECK
-  ====================== */
+  
   useEffect(() => {
     if (
       isNameValid &&
@@ -110,9 +90,6 @@ function Register() {
     isPasswordValid,
   ]);
 
-  /* ======================
-     SUBMIT HANDLER
-  ====================== */
   async function handleSubmit(e) {
     e.preventDefault();
 

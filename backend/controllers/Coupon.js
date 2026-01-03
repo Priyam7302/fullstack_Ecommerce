@@ -15,13 +15,15 @@ export const getAllCoupons = async (req, res) => {
   }
 };
 
-
 /* ======================
    ADMIN: ADD COUPON
 ====================== */
 export const addCoupon = async (req, res) => {
   try {
-    const { code, discount, startDate, expiryDate } = req.body;
+    let { code, discount, startDate, expiryDate } = req.body;
+
+    // normalize code to uppercase and trim
+    if (code && typeof code === "string") code = code.toUpperCase().trim();
 
     if (!code || !discount || !startDate || !expiryDate) {
       return res.status(400).json({ message: "All fields are required" });
@@ -60,7 +62,8 @@ export const addCoupon = async (req, res) => {
 ====================== */
 export const applyCoupon = async (req, res) => {
   try {
-    const { code, cartTotal } = req.body;
+    let { code, cartTotal } = req.body;
+    if (code && typeof code === "string") code = code.toUpperCase().trim();
 
     if (!code || !cartTotal) {
       return res
@@ -106,7 +109,9 @@ export const applyCoupon = async (req, res) => {
 export const updateCoupon = async (req, res) => {
   try {
     const { id } = req.params;
-    const { code, discount, startDate, expiryDate } = req.body;
+    let { code, discount, startDate, expiryDate } = req.body;
+
+    if (code && typeof code === "string") code = code.toUpperCase().trim();
 
     if (!code || !discount || !startDate || !expiryDate) {
       return res.status(400).json({ message: "All fields are required" });

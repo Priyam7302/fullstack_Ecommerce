@@ -145,18 +145,18 @@ const { checkUserLogin, setIsUserLoggedIn } = useAuth();
      if (response.status === 200) {
        const role = response.data?.user?.role;
 
-       // 🚫 ADMIN TRYING TO LOGIN FROM USER PAGE
+    
        if (role === "admin") {
          toast.error("Admin must login from admin panel");
 
-         // optional: clear cookie immediately
+      
          await instance.post("/user/logout", {}, { withCredentials: true });
 
          navigate("/admin/login");
          return;
        }
 
-       // ✅ VALID USER LOGIN
+   
        toast.success("Login successful");
 
        checkUserLogin();
@@ -174,9 +174,6 @@ const { checkUserLogin, setIsUserLoggedIn } = useAuth();
  }
 
 
-  /* ======================
-     GOOGLE LOGIN
-  ====================== */
   async function handleGoogleSuccess(credentialResponse) {
     try {
       const response = await instance.post(
@@ -187,7 +184,6 @@ const { checkUserLogin, setIsUserLoggedIn } = useAuth();
 
       const role = response.data?.user?.role;
 
-      // 🚫 ADMIN VIA USER GOOGLE LOGIN
       if (role === "admin") {
         toast.error("Admin must login from admin panel");
 
@@ -197,7 +193,6 @@ const { checkUserLogin, setIsUserLoggedIn } = useAuth();
         return;
       }
 
-      // ✅ VALID USER GOOGLE LOGIN
       toast.success("Google login successful");
 
       checkUserLogin();
@@ -219,7 +214,6 @@ const { checkUserLogin, setIsUserLoggedIn } = useAuth();
       <h2 className="login-user">Login To your Account</h2>
 
       <form onSubmit={handleSubmit}>
-        {/* EMAIL */}
         <div className="form-group">
           <label>Email</label>
           <input
@@ -231,8 +225,6 @@ const { checkUserLogin, setIsUserLoggedIn } = useAuth();
             required
           />
         </div>
-
-        {/* PASSWORD */}
         <div className="form-group">
           <label>Password</label>
           <input
@@ -246,8 +238,6 @@ const { checkUserLogin, setIsUserLoggedIn } = useAuth();
         </div>
 
         <button type="submit">Login</button>
-
-        {/* GOOGLE LOGIN */}
         <div className="text-center w-3xs">
           <GoogleLogin
             onSuccess={handleGoogleSuccess}

@@ -1,20 +1,28 @@
 import Product from "../models/ProductModel.js";
 import mongoose from "mongoose";
 
-
 export async function addProduct(req, res) {
   try {
     const newRecord = req.body;
-    if (req.file) {
-      newRecord.image = req.file.path.replace(/\\/g, "/");
+
+    if (req.files && req.files.length > 0) {
+      newRecord.images = req.files.map((file) => {
+        // Store just the filename, not the full path
+        // Since we serve static files from /uploads, we only need the filename
+        const path = file.path.replace(/\\/g, "/");
+        return path.replace("uploads/", "");
+      });
     }
+
     const newProduct = new Product(newRecord);
     await newProduct.save();
+
     return res.status(201).json(newProduct);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 }
+
 
 export async function updateProduct(req, res) {
   try {

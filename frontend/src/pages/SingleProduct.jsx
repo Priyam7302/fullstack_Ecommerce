@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { PiCurrencyInrLight } from "react-icons/pi";
 import { useAuth } from "../contexts/AuthProvider";
 import { useCart } from "../contexts/CartProvider";
+import Loader from "../components/Loader";
+
 
 const SingleProduct = () => {
   const { slug } = useParams();
@@ -14,27 +16,21 @@ const SingleProduct = () => {
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [message, setMessage] = useState({
     state: "",
     text: "",
   });
 
-  /* ======================
-     CHECK IF PRODUCT IN CART
-     (BACKEND USES productId)
-  ====================== */
   const isInCart = product
     ? cartItems.some((item) => item.productId?._id === product._id)
     : false;
-
-  /* ======================
-     FETCH SINGLE PRODUCT
-  ====================== */
   useEffect(() => {
     async function getSingleData() {
       try {
         const response = await instance.get("/product/" + slug);
-        setProduct(response.data[0]); // API returns array
+        setProduct(response.data[0]);
+        setSelectedImageIndex(0);
       } catch (error) {
         console.error(error);
       } finally {
@@ -45,9 +41,7 @@ const SingleProduct = () => {
     getSingleData();
   }, [slug]);
 
-  /* ======================
-     ADD TO CART (QUANTITY++)
-  ====================== */
+
   async function handleAddToCart(productId) {
     if (!isUserLoggedIn) {
       navigate("/login?nextPage=/product/" + slug);
@@ -67,7 +61,6 @@ const SingleProduct = () => {
             (item) => item.productId?._id === product._id
           );
 
-          // 🔥 Increase quantity
           if (exists) {
             return prev.map((item) =>
               item.productId._id === product._id
@@ -75,8 +68,6 @@ const SingleProduct = () => {
                 : item
             );
           }
-
-          // 🔥 First time add (MATCH BACKEND SHAPE)
           return [
             ...prev,
             {
@@ -100,19 +91,40 @@ const SingleProduct = () => {
     }
   }
 
-  /* ======================
-     RENDER
-  ====================== */
-  if (loading) return <p>Loading...</p>;
+ if (loading) return <Loader />;
+
   if (!product) return <p>Product not found</p>;
+
+  const images = product.images || (product.image ? [product.image] : []);
+  const mainImage = images[selectedImageIndex] || images[0] || '';
 
   return (
     <div className="single-product">
       <div className="single-product-image">
-        <img
-          src={`${import.meta.env.VITE_BASEURL}/${product.image}`}
-          alt={product.name}
-        />
+        <div className="main-image-container">
+          <img
+            src={`${import.meta.env.VITE_BASEURL}/uploads/${mainImage}`}
+            alt={product.name}
+          />
+        </div>
+        {images.length > 1 && (
+          <div className="thumbnail-gallery">
+            {images.map((img, index) => (
+              <div
+                key={index}
+                className={`thumbnail ${
+                  selectedImageIndex === index ? "active" : ""
+                }`}
+                onClick={() => setSelectedImageIndex(index)}
+              >
+                <img
+                  src={`${import.meta.env.VITE_BASEURL}/uploads/${img}`}
+                  alt={`${product.name} ${index + 1}`}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="single-product-details">
@@ -149,3 +161,109 @@ const SingleProduct = () => {
 };
 
 export default SingleProduct;
+// import { useEffect, useState } from "react";
+// import instance from "../axiosConfig";
+// import { useNavigate, useParams } from "react-router-dom";
+// import { PiCurrencyInrLight } from "react-icons/pi";
+// import { useAuth } from "../contexts/AuthProvider";
+// import { useCart } from "../contexts/CartProvider";
+// import Loader from "../components/Loader";
+
+// const SingleProduct = () => {
+//   const { slug } = useParams();
+//   const navigate = useNavigate();
+
+//   const { cartItems, setCartItems } = useCart();
+//   const { isLoggedIn } = useAuth();
+
+//   const [product, setProduct] = useState(null);
+//   const [loading, setLoading] = useState(true);
+//   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+//   useEffect(() => {
+//     async function fetchProduct() {
+//       try {
+//         const res = await instance.get(`/product/${slug}`);
+//         setProduct(res.data[0]);
+//         setSelectedImageIndex(0);
+//       } catch (err) {
+//         console.error(err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     }
+//     fetchProduct();
+//   }, [slug]);
+
+//   if (loading) return <Loader />;
+//   if (!product) return <p>Product not found</p>;
+
+//   const images = product.images?.length
+//     ? product.images
+//     : product.image
+//     ? [product.image.replace("uploads/", "")]
+//     : [];
+
+//   const mainImage = images[selectedImageIndex];
+
+//   async function addToCart() {
+//     if (!isLoggedIn) {
+//       navigate(`/login?nextPage=/product/${slug}`);
+//       return;
+//     }
+
+//     await instance.post("/cart/add", {
+//       productId: product._id,
+//       quantity: 1,
+//     });
+
+//     setCartItems((prev) => [...prev]);
+//   }
+
+//   return (
+//     <div className="single-product">
+//       <div className="single-product-image">
+//         <img
+//           src={`${import.meta.env.VITE_BASEURL}/uploads/${mainImage}`}
+//           alt={product.name}
+//         />
+
+//         {images.length > 1 && (
+//           <div className="thumbnail-gallery">
+//             {images.map((img, index) => (
+//               <img
+//                 key={index}
+//                 src={`${import.meta.env.VITE_BASEURL}/uploads/${img}`}
+//                 alt=""
+//                 onClick={() => setSelectedImageIndex(index)}
+//               />
+//             ))}
+//           </div>
+//         )}
+//       </div>
+
+//       <div className="single-product-details">
+//         <h1>{product.name}</h1>
+//         <p>{product.category}</p>
+
+//         <p>
+//           <PiCurrencyInrLight />
+//           {product.discountedPrice ? (
+//             <>
+//               <del>{product.originalPrice}</del>{" "}
+//               <strong>{product.discountedPrice}</strong>
+//             </>
+//           ) : (
+//             <strong>{product.originalPrice}</strong>
+//           )}
+//         </p>
+
+//         <p>{product.description}</p>
+
+//         <button onClick={addToCart}>Add to Cart</button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SingleProduct;

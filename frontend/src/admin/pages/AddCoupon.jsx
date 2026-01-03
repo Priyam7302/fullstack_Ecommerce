@@ -12,7 +12,13 @@ const AddCoupon = () => {
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    // Uppercase the coupon code as the user types
+    if (name === "code") {
+      setForm({ ...form, [name]: value.toUpperCase() });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {

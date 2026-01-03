@@ -15,7 +15,8 @@ const storage = multer.diskStorage({
     cb(null, "uploads");
   },
   filename: function (req, file, cb) {
-    const fileName = req.body.slug + path.extname(file.originalname);
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const fileName = req.body.slug + "-" + uniqueSuffix + path.extname(file.originalname);
     cb(null, fileName);
   },
 });
@@ -25,7 +26,7 @@ const productRouter = Router();
 
 productRouter.get("/", getProducts);
 productRouter.get("/:slug", getSingleProduct);
-productRouter.post("/", upload.single("image"), addProduct);
+productRouter.post("/", upload.array("images", 5), addProduct);
 productRouter.put("/:id", updateProduct);
 productRouter.delete("/:id", deleteProduct);
 productRouter.get("/checkSlug/:slug", checkSlug);
