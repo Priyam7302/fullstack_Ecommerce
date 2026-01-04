@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import instance from "../../axiosConfig";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader";
-import "../adminUi.css";
+import "./admin.css";
 
 const AdminHome = () => {
 
