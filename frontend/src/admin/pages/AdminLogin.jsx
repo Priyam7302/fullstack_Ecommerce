@@ -37,7 +37,7 @@ function AdminLogin() {
 
   return (
     <div className="admin-login">
-      <h2>Login To your Admin Account</h2>
+      <h2>Login To Your Admin Account</h2>
 
       <form onSubmit={handleSubmit}>
         {/* EMAIL */}

@@ -1,0 +1,1131 @@
+/* =====================================================
+   ADMIN THEME (COLORS)
+   (kept separate from user theme)
+===================================================== */
+
+:root {
+    --admin-bg-main: #ffffff;
+    --admin-bg-header: #f4f8f7;
+
+    --admin-primary: #1abc9c;
+    --admin-primary-hover: #148f77;
+
+    --admin-text-main: #1f1f1f;
+    --admin-text-muted: #6b6b6b;
+
+    --admin-border-light: #e2e8e6;
+}
+/* =====================================================
+   ADMIN HEADER – WEARHAUS ADMIN
+===================================================== */
+
+.admin-header {
+    width: 100%;
+    height: 68px;
+
+    background-color: var(--admin-bg-header);
+    border-bottom: 1px solid var(--admin-border-light);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1200;
+}
+
+/* =====================================================
+   ADMIN LEFT (LOGO)
+===================================================== */
+
+.admin-left {
+    display: flex;
+    align-items: center;
+}
+
+.admin-logo {
+    margin-top: 15px;
+    height: 120px;
+    width: auto;
+}
+
+/* =====================================================
+   HAMBURGER ICON (MOBILE)
+===================================================== */
+
+.admin-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    font-size: 26px;
+    color: var(--admin-text-main);
+}
+
+/* =====================================================
+   ADMIN NAVIGATION (DESKTOP)
+===================================================== */
+
+.admin-nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+/* Nav links */
+.admin-nav a,
+.admin-nav .icon {
+    position: relative;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--admin-text-main);
+    text-decoration: none;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    transition: color 0.2s ease;
+}
+
+/* Underline hover (desktop only) */
+.admin-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+
+    width: 0%;
+    height: 2px;
+    background-color: var(--admin-primary);
+
+    transition: width 0.25s ease;
+}
+
+.admin-nav a:hover {
+    color: var(--admin-primary);
+}
+
+.admin-nav a:hover::after {
+    width: 100%;
+}
+
+/* Icon color */
+.admin-nav .icon svg {
+    font-size: 16px;
+    color: var(--admin-text-main);
+}
+
+.admin-nav .icon:hover,
+.admin-nav .icon:hover svg {
+    color: var(--admin-primary);
+}
+
+/* =====================================================
+   RESPONSIVE – TABLET
+===================================================== */
+
+@media (max-width: 1024px) {
+    .admin-header {
+        padding: 0 20px;
+    }
+
+    .admin-nav {
+        gap: 16px;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE – MOBILE (HAMBURGER MENU)
+===================================================== */
+
+@media (max-width: 768px) {
+    .admin-header {
+        height: 68px;
+        padding: 0 16px;
+    }
+
+    /* Show hamburger */
+    .admin-hamburger {
+        display: block;
+    }
+
+    /* Hide nav by default */
+    .admin-nav {
+        position: absolute;
+        top: 68px;
+        left: 0;
+
+        width: 100%;
+        background-color: #ffffff;
+        border-bottom: 1px solid var(--admin-border-light);
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+
+        padding: 12px 20px;
+
+        display: none;
+    }
+
+    /* Show when open */
+    .admin-nav.open {
+        display: flex;
+    }
+
+    .admin-nav a,
+    .admin-nav .icon {
+        width: 100%;
+        padding: 12px 0;
+    }
+
+    /* Remove underline animation on mobile */
+    .admin-nav a::after {
+        display: none;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE – SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .admin-nav a,
+    .admin-nav .icon {
+        font-size: 13px;
+    }
+}
+
+/* =====================================================
+   ADMIN PAGE WRAPPER
+===================================================== */
+
+.admin-page {
+    max-width: 1280px;
+    margin: 50px auto;
+    padding: 32px 36px;
+
+    background-color: var(--admin-bg-main);
+    border: 1px solid var(--admin-border-light);
+    border-radius: 14px;
+}
+
+/* Page title */
+.admin-page h2 {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--admin-text-main);
+    margin-bottom: 6px;
+}
+
+.admin-page>p {
+    font-size: 14px;
+    color: var(--admin-text-muted);
+    margin-bottom: 28px;
+}
+
+/* =====================================================
+   ADMIN SECTIONS
+===================================================== */
+
+.admin-section {
+    margin-bottom: 40px;
+}
+
+.admin-section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--admin-text-main);
+    margin-bottom: 18px;
+}
+
+/* =====================================================
+   ADMIN CARDS (USERS)
+===================================================== */
+
+.admin-card {
+    background-color: #ffffff;
+    border: 1px solid var(--admin-border-light);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 20px;
+}
+
+.admin-card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--admin-primary);
+    margin-bottom: 12px;
+}
+
+/* User lists */
+.admin-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.admin-card li {
+    font-size: 14px;
+    color: var(--admin-text-main);
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Admin action buttons (Block / Unblock) */
+.admin-card button {
+    margin-left: auto;
+    padding: 6px 12px;
+
+    border-radius: 6px;
+    border: 1px solid var(--admin-primary);
+    background-color: transparent;
+
+    color: var(--admin-primary);
+    font-size: 13px;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.admin-card button:hover {
+    background-color: var(--admin-primary);
+    color: #ffffff;
+}
+
+/* =====================================================
+   ADMIN FILTERS
+===================================================== */
+
+.admin-filters {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-filters label {
+    font-size: 14px;
+    color: var(--admin-text-main);
+}
+
+.admin-filters select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--admin-border-light);
+    font-size: 14px;
+    outline: none;
+}
+
+.admin-filters select:focus {
+    border-color: var(--admin-primary);
+}
+
+/* =====================================================
+   ADMIN TABLE (PRODUCTS)
+===================================================== */
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Table header */
+.admin-table thead {
+    background-color: var(--admin-bg-header);
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--admin-text-main);
+    border-bottom: 1px solid var(--admin-border-light);
+}
+
+/* Table body */
+.admin-table td {
+    padding: 12px 14px;
+    font-size: 14px;
+    color: var(--admin-text-main);
+    border-bottom: 1px solid var(--admin-border-light);
+}
+
+/* Hover row */
+.admin-table tbody tr:hover {
+    background-color: #f8fbfa;
+}
+
+/* =====================================================
+   RESPONSIVE – TABLET
+===================================================== */
+
+@media (max-width: 1024px) {
+    .admin-page {
+        padding: 26px 24px;
+        margin: 40px 20px;
+    }
+
+    .admin-card li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-card button {
+        margin-left: 0;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE – MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+    .admin-page {
+        margin: 30px 16px;
+        padding: 22px 18px;
+    }
+
+    .admin-page h2 {
+        font-size: 22px;
+    }
+
+    .admin-section h3 {
+        font-size: 18px;
+    }
+
+    /* Make table scrollable */
+    .admin-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE – SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+    .admin-card {
+        padding: 16px;
+    }
+
+    .admin-filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* =====================================================
+   ADMIN – ADD PRODUCT PAGE
+===================================================== */
+
+.add-product {
+    max-width: 900px;
+    margin: 40px auto 60px;
+    padding: 28px 32px;
+
+    background-color: #ffffff;
+    border: 1px solid var(--admin-border-light);
+    border-radius: 14px;
+}
+
+/* Page title */
+.add-product h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--admin-text-main);
+    margin-bottom: 24px;
+}
+
+/* =====================================================
+   ADMIN FORM (ADD PRODUCT)
+===================================================== */
+
+.add-product form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Form group */
+.add-product .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.add-product label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--admin-text-main);
+}
+
+/* Inputs */
+.add-product input,
+.add-product textarea {
+    padding: 12px 14px;
+    font-size: 14px;
+
+    border-radius: 8px;
+    border: 1px solid var(--admin-border-light);
+    outline: none;
+
+    transition: border-color 0.2s ease;
+}
+
+.add-product input:focus,
+.add-product textarea:focus {
+    border-color: var(--admin-primary);
+}
+
+/* Readonly slug */
+.add-product input[readonly] {
+    background-color: #f7f9f8;
+    cursor: not-allowed;
+}
+
+/* Textarea */
+.large-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Remove number arrows */
+.add-product input[type=number]::-webkit-inner-spin-button,
+.add-product input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.add-product input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* =====================================================
+   FILE INPUT
+===================================================== */
+
+.add-product input[type="file"] {
+    padding: 8px;
+    font-size: 13px;
+    border: 1px dashed var(--admin-border-light);
+    background-color: #f9fbfa;
+    cursor: pointer;
+}
+
+/* =====================================================
+   IMAGE PREVIEW GRID
+===================================================== */
+
+.image-preview-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+.image-preview {
+    position: relative;
+    width: 110px;
+    height: 110px;
+
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--admin-border-light);
+    background-color: #ffffff;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Remove image button */
+.remove-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+
+    border: none;
+    background-color: rgba(0, 0, 0, 0.65);
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.remove-btn:hover {
+    background-color: #c62828;
+}
+
+/* =====================================================
+   SUBMIT BUTTON
+===================================================== */
+
+.add-product button[type="submit"] {
+    margin-top: 10px;
+    padding: 14px 0;
+
+    border-radius: 10px;
+    border: none;
+    background-color: var(--admin-primary);
+
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.add-product button[type="submit"]:hover {
+    background-color: var(--admin-primary-hover);
+}
+
+.add-product button[type="submit"]:active {
+    transform: scale(0.97);
+}
+
+/* =====================================================
+   RESPONSIVE – TABLET
+===================================================== */
+
+@media (max-width: 1024px) {
+    .add-product {
+        margin: 30px 20px 50px;
+        padding: 24px 26px;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE – MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+    .add-product {
+        margin: 24px 16px 40px;
+        padding: 22px 20px;
+    }
+
+    .add-product h2 {
+        font-size: 22px;
+    }
+
+    .image-preview {
+        width: 96px;
+        height: 96px;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE – SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+    .image-preview {
+        width: 80px;
+        height: 80px;
+    }
+
+    .add-product button[type="submit"] {
+        font-size: 14px;
+    }
+}
+
+/* =====================================================
+   ADMIN – ADD COUPON PAGE
+===================================================== */
+
+.admin-page {
+    max-width: 600px;
+    margin: 40px auto 60px;
+    padding: 28px 32px;
+
+    background-color: #ffffff;
+    border: 1px solid var(--admin-border-light);
+    border-radius: 14px;
+}
+
+/* Page title */
+.admin-page h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--admin-text-main);
+    margin-bottom: 22px;
+}
+
+/* =====================================================
+   ADMIN FORM
+===================================================== */
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Labels */
+.admin-form label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--admin-text-main);
+}
+
+/* Inputs */
+.admin-form input {
+    padding: 12px 14px;
+    font-size: 14px;
+
+    border-radius: 8px;
+    border: 1px solid var(--admin-border-light);
+    outline: none;
+
+    transition: border-color 0.2s ease;
+}
+
+.admin-form input:focus {
+    border-color: var(--admin-primary);
+}
+
+/* Date inputs consistency */
+.admin-form input[type="date"] {
+    cursor: pointer;
+}
+
+/* =====================================================
+   REMOVE NUMBER SPINNERS (DISCOUNT %)
+===================================================== */
+
+/* Chrome, Edge, Safari */
+.admin-page input[type="number"]::-webkit-inner-spin-button,
+.admin-page input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.admin-page input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* =====================================================
+   SUBMIT BUTTON (FORCED ADMIN COLOR)
+===================================================== */
+
+.admin-form button {
+    margin-top: 6px;
+    padding: 14px 0;
+
+    border-radius: 10px;
+    border: none;
+
+    background-color: var(--admin-primary) !important;
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.admin-form button:hover {
+    background-color: var(--admin-primary-hover);
+}
+
+.admin-form button:active {
+    transform: scale(0.97);
+}
+
+/* =====================================================
+   OVERRIDE USER BUTTON STYLES (IMPORTANT)
+===================================================== */
+
+.admin-page button {
+    background-color: var(--admin-primary);
+    color: #ffffff;
+}
+
+/* =====================================================
+   SUCCESS / ERROR MESSAGE
+===================================================== */
+
+.admin-page p {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.admin-page p.success {
+    color: #2e7d32;
+}
+
+.admin-page p.error {
+    color: #c62828;
+}
+
+/* =====================================================
+   RESPONSIVE – TABLET
+===================================================== */
+
+@media (max-width: 768px) {
+    .admin-page {
+        margin: 30px 16px 50px;
+        padding: 24px 22px;
+    }
+
+    .admin-page h2 {
+        font-size: 22px;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE – SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+    .admin-page {
+        padding: 22px 18px;
+    }
+
+    .admin-form button {
+        font-size: 14px;
+    }
+}
+
+
+/* =====================================================
+   ADMIN – ALL COUPONS PAGE
+===================================================== */
+
+.admin-page {
+    max-width: 1200px;
+    margin: 40px auto 60px;
+    padding: 28px 32px;
+
+    background-color: #ffffff;
+    border: 1px solid var(--admin-border-light);
+    border-radius: 14px;
+}
+
+/* Page title */
+.admin-page h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--admin-text-main);
+    margin-bottom: 22px;
+}
+
+/* Empty / error text */
+.admin-page>p {
+    font-size: 14px;
+    color: var(--admin-text-muted);
+}
+
+/* =====================================================
+   ADMIN TABLE – COUPONS
+===================================================== */
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Table header */
+.admin-table thead {
+    background-color: var(--admin-bg-header);
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 12px 14px;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--admin-text-main);
+
+    border-bottom: 1px solid var(--admin-border-light);
+}
+
+/* Table body cells */
+.admin-table td {
+    padding: 12px 14px;
+    font-size: 14px;
+    color: var(--admin-text-main);
+    border-bottom: 1px solid var(--admin-border-light);
+    vertical-align: middle;
+}
+
+/* Row hover */
+.admin-table tbody tr:hover {
+    background-color: #f8fbfa;
+}
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+.edit-btn,
+.delete-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    margin-right: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Edit */
+.edit-btn {
+    background-color: transparent;
+    color: var(--admin-primary);
+    border: 1px solid var(--admin-primary);
+}
+
+.edit-btn:hover {
+    background-color: var(--admin-primary);
+    color: #ffffff;
+}
+
+/* Delete */
+.delete-btn {
+    background-color: transparent;
+    color: #c62828;
+    border: 1px solid #c62828;
+}
+
+.delete-btn:hover {
+    background-color: #c62828;
+    color: #ffffff;
+}
+
+/* =====================================================
+   RESPONSIVE – TABLET
+===================================================== */
+
+@media (max-width: 1024px) {
+    .admin-page {
+        margin: 30px 20px 50px;
+        padding: 24px 26px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE – MOBILE (TABLE SCROLL)
+===================================================== */
+
+@media (max-width: 768px) {
+    .admin-page {
+        margin: 24px 16px 40px;
+        padding: 22px 20px;
+    }
+
+    /* Make table horizontally scrollable */
+    .admin-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        margin-bottom: 6px;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE – SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+    .admin-page h2 {
+        font-size: 22px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        font-size: 12.5px;
+    }
+}
+
+/* =====================================================
+   ADMIN LOGIN PAGE
+===================================================== */
+
+.admin-login {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+    background-color: #f7fbfa;
+}
+
+/* Heading */
+.admin-login h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--admin-text-main);
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+/* =====================================================
+   LOGIN FORM
+===================================================== */
+
+.admin-login form {
+    width: 100%;
+    max-width: 420px;
+
+    background-color: #ffffff;
+    padding: 28px 30px;
+
+    border-radius: 14px;
+    border: 1px solid var(--admin-border-light);
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Form groups */
+.admin-login .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.admin-login label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--admin-text-main);
+}
+
+/* Inputs */
+.admin-login input {
+    padding: 12px 14px;
+    font-size: 14px;
+
+    border-radius: 8px;
+    border: 1px solid var(--admin-border-light);
+    outline: none;
+
+    transition: border-color 0.2s ease;
+}
+
+.admin-login input:focus {
+    border-color: var(--admin-primary);
+}
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.admin-login button {
+    margin-top: 6px;
+    padding: 14px 0;
+
+    border-radius: 10px;
+    border: none;
+
+    background-color: var(--admin-primary) !important;
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.admin-login button:hover {
+    background-color: var(--admin-primary-hover) !important; 
+}
+
+.admin-login button:active {
+    transform: scale(0.97);
+}
+
+/* =====================================================
+   OVERRIDE USER BUTTON STYLES (SAFETY)
+===================================================== */
+
+.admin-login button {
+    background-color: var(--admin-primary);
+}
+
+/* =====================================================
+   RESPONSIVE – TABLET
+===================================================== */
+
+@media (max-width: 768px) {
+    .admin-login h2 {
+        font-size: 22px;
+    }
+
+    .admin-login form {
+        padding: 24px 22px;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE – SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+    .admin-login form {
+        padding: 22px 18px;
+    }
+
+    .admin-login button {
+        font-size: 14px;
+    }
+}

@@ -57,28 +57,37 @@ const AddCoupon = () => {
             required
           />
 
-          <input
-            type="date"
-            name="startDate"
-            value={form.startDate}
-            onChange={handleChange}
-            required
-          />
+          {/* START DATE */}
+          <div className="form-group">
+            <label htmlFor="startDate">Start Date</label>
+            <input
+              type="date"
+              id="startDate"
+              name="startDate"
+              value={form.startDate}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <input
-            type="date"
-            name="expiryDate"
-            value={form.expiryDate}
-            onChange={handleChange}
-            required
-          />
+          {/* EXPIRY DATE */}
+          <div className="form-group">
+            <label htmlFor="expiryDate">Expiry Date</label>
+            <input
+              type="date"
+              id="expiryDate"
+              name="expiryDate"
+              value={form.expiryDate}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
           <button type="submit">Add Coupon</button>
         </form>
 
         {message && <p>{message}</p>}
       </div>
-      
     </>
   );
 };

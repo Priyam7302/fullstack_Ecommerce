@@ -211,7 +211,7 @@ const { checkUserLogin, setIsUserLoggedIn } = useAuth();
 
   return (
     <div>
-      <h2 className="login-user">Login To your Account</h2>
+      {/* <h2 className="login-user">Login To your Account</h2> */}
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -244,7 +244,10 @@ const { checkUserLogin, setIsUserLoggedIn } = useAuth();
             onError={handleGoogleError}
           />
         </div>
-        
+      <p className="auth-switch">
+        Don’t have an account?{" "}
+        <span onClick={() => navigate("/register")}>Register</span>
+      </p>
       </form>
     </div>
   );

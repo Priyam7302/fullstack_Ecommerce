@@ -69,7 +69,7 @@ function Register() {
 
   const isPasswordValid =
     hasUppercase && hasNumber && hasSpecial && hasMinLength;
-  
+
   useEffect(() => {
     if (
       isNameValid &&
@@ -116,7 +116,7 @@ function Register() {
 
   return (
     <div>
-      <h2 className="register-user">Register To Our E-commerce</h2>
+      {/* <h2 className="register-user">Register To Our E-commerce</h2> */}
 
       <form onSubmit={handleSubmit}>
         {/* NAME */}
@@ -222,6 +222,10 @@ function Register() {
         <button type="submit" disabled={!isFormValid}>
           Register
         </button>
+        <p className="auth-switch">
+          Already have an account?{" "}
+          <span onClick={() => navigate("/login")}>Login</span>
+        </p>
       </form>
     </div>
   );
