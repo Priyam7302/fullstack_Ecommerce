@@ -11,12 +11,13 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     async function fetchCart() {
       try {
-        const res = await instance.get("/cart/", {
+        const res = await instance.get("/cart", {
           withCredentials: true,
         });
 
-        setCartItems(Array.isArray(res.data) ? res.data : []);
-      } catch {
+        //  backend returns { userId, products: [] }
+        setCartItems(res.data?.products || []);
+      } catch (error) {
         setCartItems([]);
       }
     }

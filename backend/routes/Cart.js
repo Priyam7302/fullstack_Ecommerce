@@ -1,17 +1,19 @@
 import { Router } from "express";
-import { checkAuth } from "../middlewares/Auth.js";
 import {
   addToCart,
   getCart,
   deleteCartItem,
   updateCartQuantity,
 } from "../controllers/Cart.js";
+import { checkAuth } from "../middlewares/Auth.js";
 
 const cartRouter = Router();
 
+cartRouter.post("/", checkAuth, addToCart);
 cartRouter.get("/", checkAuth, getCart);
-cartRouter.post("/add", checkAuth, addToCart);
-cartRouter.delete("/delete/:id", checkAuth, deleteCartItem);
-cartRouter.patch("/update/:id", checkAuth, updateCartQuantity); 
+cartRouter.delete("/:productId", checkAuth, deleteCartItem);
+cartRouter.patch("/update/:productId", checkAuth, updateCartQuantity);
 
 export default cartRouter;
+
+
