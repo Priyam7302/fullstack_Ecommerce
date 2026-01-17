@@ -2,7 +2,6 @@ import express from "express";
 import connectToDB from "./db/connect.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-
 import productRouter from "./routes/productRouter.js";
 import authRouter from "./routes/Auth.js";
 import adminRouter from "./routes/Admin.js";
@@ -25,8 +24,6 @@ app.use(cookieParser());
 await connectToDB(); 
 
 app.use("/user", authRouter);
-
-
 app.use("/product", productRouter);
 app.use("/admin", adminRouter);
 app.use("/check", checkRouter);

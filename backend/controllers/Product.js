@@ -1,18 +1,29 @@
 import Product from "../models/ProductModel.js";
-import mongoose from "mongoose";
+import cloudinary from "../config/cloudinary.js";
+import fs from "fs";
+
 
 export async function addProduct(req, res) {
   try {
     const newRecord = req.body;
+    const images = [];
 
     if (req.files && req.files.length > 0) {
-      newRecord.images = req.files.map((file) => {
-        // Store just the filename, not the full path
-        // Since we serve static files from /uploads, we only need the filename
-        const path = file.path.replace(/\\/g, "/");
-        return path.replace("uploads/", "");
-      });
+      for (const file of req.files) {
+        // 1️⃣ Upload image to Cloudinary
+        const result = await cloudinary.uploader.upload(file.path, {
+          folder: "ecommerce/products",
+        });
+
+        // 2️⃣ Save Cloudinary URL
+        images.push(result.secure_url);
+
+        // 3️⃣ Delete temp file
+        fs.unlinkSync(file.path);
+      }
     }
+
+    newRecord.images = images;
 
     const newProduct = new Product(newRecord);
     await newProduct.save();
@@ -22,6 +33,28 @@ export async function addProduct(req, res) {
     return res.status(500).json({ message: error.message });
   }
 }
+
+// export async function addProduct(req, res) {
+//   try {
+//     const newRecord = req.body;
+
+//     if (req.files && req.files.length > 0) {
+//       newRecord.images = req.files.map((file) => {
+//         // Store just the filename, not the full path
+//         // Since we serve static files from /uploads, we only need the filename
+//         const path = file.path.replace(/\\/g, "/");
+//         return path.replace("uploads/", "");
+//       });
+//     }
+
+//     const newProduct = new Product(newRecord);
+//     await newProduct.save();
+
+//     return res.status(201).json(newProduct);
+//   } catch (error) {
+//     return res.status(500).json({ message: error.message });
+//   }
+// }
 
 
 export async function updateProduct(req, res) {
